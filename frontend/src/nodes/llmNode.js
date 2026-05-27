@@ -32,9 +32,6 @@ export const LLMNode = ({ id, data }) => {
           ]}
         />
       </NodeField>
-      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>
-       
-      </div>
     </BaseNode>
   );
 };

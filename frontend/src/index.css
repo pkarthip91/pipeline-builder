@@ -1,5 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
 
+:root {
+  --bg: #0f1219;
+  --text: #e2e8f0;
+  --panel-bg: #111827;
+  --panel-border: rgba(255,255,255,0.08);
+  --panel-border-soft: rgba(255,255,255,0.06);
+  --muted: rgba(255,255,255,0.35);
+  --muted-bg: rgba(255,255,255,0.05);
+  --control-bg: #1e2235;
+  --control-border: rgba(255,255,255,0.08);
+  --ui-bg: #161927;
+  --node-bg: linear-gradient(145deg, #1e2235 0%, #161927 100%);
+  --input-bg: rgba(255,255,255,0.05);
+  --input-border: rgba(255,255,255,0.1);
+  --scrollbar-track: #161927;
+  --scrollbar-thumb: rgba(99,102,241,0.4);
+}
+
+[data-theme='light'] {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --panel-bg: #ffffff;
+  --panel-border: rgba(15,23,42,0.12);
+  --panel-border-soft: rgba(15,23,42,0.08);
+  --muted: rgba(15,23,42,0.65);
+  --muted-bg: rgba(15,23,42,0.06);
+  --control-bg: #eef2ff;
+  --control-border: rgba(15,23,42,0.12);
+  --ui-bg: #f8fafc;
+  --node-bg: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --input-bg: rgba(15,23,42,0.04);
+  --input-border: rgba(15,23,42,0.16);
+  --scrollbar-track: #e2e7ef;
+  --scrollbar-thumb: rgba(99,102,241,0.35);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -7,8 +43,8 @@
 }
 
 body {
-  background: #0f1219;
-  color: #e2e8f0;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'DM Sans', sans-serif;
   overflow: hidden;
 }
@@ -26,13 +62,13 @@ body {
   stroke-width: 2 !important;
 }
 .react-flow__controls button {
-  background: #1e2235 !important;
-  border-color: rgba(255,255,255,0.08) !important;
-  color: #e2e8f0 !important;
-  fill: #e2e8f0 !important;
+  background: var(--control-bg) !important;
+  border-color: var(--control-border) !important;
+  color: var(--text) !important;
+  fill: var(--text) !important;
 }
 .react-flow__controls button:hover {
-  background: #2a2f45 !important;
+  background: rgba(99,102,241,0.12) !important;
 }
 .react-flow__minimap {
   border-radius: 8px !important;
@@ -52,5 +88,5 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #161927; }
-::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.4); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }

@@ -30,7 +30,7 @@ const nodeTypes = {
   transform:    TransformNode,
 };
 
-export const PipelineUI = () => {
+export const PipelineUI = ({ theme }) => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const nodes = useStore((state) => state.nodes, shallow);
@@ -83,16 +83,24 @@ export const PipelineUI = () => {
         connectionLineType="smoothstep"
         fitView
       >
-        <Background color="#2a2f45" gap={gridSize} />
+        <Background
+          variant="dots"
+          gap={gridSize}
+          size={1}
+          color={theme === 'dark' ? 'rgba(226,232,240,0.08)' : 'rgba(15,23,42,0.08)'}
+        />
         <Controls style={{
-          background: '#1e2235',
-          border: '1px solid rgba(255,255,255,0.08)',
+          background: 'var(--control-bg)',
+          border: '1px solid var(--control-border)',
           borderRadius: 8,
         }} />
         <MiniMap
-          style={{ background: '#161927', border: '1px solid rgba(255,255,255,0.08)' }}
-          nodeColor={() => '#6366f1'}
-          maskColor="rgba(0,0,0,0.5)"
+          style={{
+            background: theme === 'dark' ? '#161927' : '#f8fafc',
+            border: '1px solid var(--panel-border)',
+          }}
+          nodeColor={() => (theme === 'dark' ? '#213052' : '#bcbaba')}
+          maskColor={theme === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(15,23,42,0.08)'}
         />
       </ReactFlow>
     </div>

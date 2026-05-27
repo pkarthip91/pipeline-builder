@@ -1,6 +1,8 @@
 // baseNode.js - Core node abstraction for all pipeline nodes
 
 import { Handle, Position } from 'reactflow';
+import { X } from 'lucide-react';
+import { useStore } from '../store';
 
 /**
  * BaseNode abstraction
@@ -37,18 +39,19 @@ export const BaseNode = ({
   };
 
   const color = accentColor || categoryColors[category] || '#6366f1';
+  const removeNode = useStore((state) => state.removeNode);
 
   return (
     <div
       style={{
         minWidth: 220,
-        background: 'linear-gradient(145deg, #1e2235 0%, #161927 100%)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        background: 'var(--node-bg)',
+        border: '1px solid var(--panel-border)',
         borderLeft: `3px solid ${color}`,
         borderRadius: '10px',
-        boxShadow: `0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04)`,
+        boxShadow: `0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06)`,
         fontFamily: "'DM Sans', sans-serif",
-        color: '#e2e8f0',
+        color: 'var(--text)',
         position: 'relative',
         overflow: 'visible',
         ...style,
@@ -61,7 +64,7 @@ export const BaseNode = ({
           alignItems: 'center',
           gap: '8px',
           padding: '10px 14px 8px',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid var(--panel-border-soft)',
         }}
       >
         {icon && (
@@ -97,6 +100,29 @@ export const BaseNode = ({
             {category}
           </span>
         )}
+        <button
+          type="button"
+          onClick={() => removeNode(id)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 16,
+            height: 16,
+            border: 'none',
+            borderRadius: 4,
+            background: 'transparent',
+            color: 'var(--muted)',
+            cursor: 'pointer',
+            transition: 'color 0.2s, background 0.2s',
+          }}
+          title="Remove node"
+          aria-label="Remove node"
+          onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(148,163,184,0.12)'}
+          onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+        >
+          <X size={10} strokeWidth={2} />
+        </button>
       </div>
 
       {/* Body */}
@@ -132,7 +158,7 @@ export const BaseNode = ({
                 left: 14,
                 top: `calc(${topPct}% - 7px)`,
                 fontSize: '9px',
-                color: 'rgba(255,255,255,0.35)',
+                color: 'var(--muted)',
                 pointerEvents: 'none',
                 userSelect: 'none',
               }}
@@ -171,7 +197,7 @@ export const BaseNode = ({
                 right: 14,
                 top: `calc(${topPct}% - 7px)`,
                 fontSize: '9px',
-                color: 'rgba(255,255,255,0.35)',
+                color: 'var(--muted)',
                 pointerEvents: 'none',
                 userSelect: 'none',
                 textAlign: 'right',
@@ -194,7 +220,7 @@ export const NodeLabel = ({ children }) => (
       display: 'block',
       fontSize: '10px',
       fontWeight: 600,
-      color: 'rgba(255,255,255,0.4)',
+      color: 'var(--muted)',
       letterSpacing: '0.06em',
       textTransform: 'uppercase',
       marginBottom: '4px',
@@ -212,19 +238,19 @@ export const NodeInput = ({ value, onChange, placeholder, type = 'text', style =
     placeholder={placeholder}
     style={{
       width: '100%',
-      background: 'rgba(255,255,255,0.05)',
-      border: '1px solid rgba(255,255,255,0.1)',
+      background: 'var(--input-bg)',
+      border: '1px solid var(--input-border)',
       borderRadius: '6px',
       padding: '5px 8px',
       fontSize: '12px',
-      color: '#e2e8f0',
+      color: 'var(--text)',
       outline: 'none',
       boxSizing: 'border-box',
       transition: 'border-color 0.2s',
       ...style,
     }}
     onFocus={e => e.target.style.borderColor = 'rgba(99,102,241,0.6)'}
-    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+    onBlur={e => e.target.style.borderColor = 'var(--input-border)'}
   />
 );
 
@@ -234,12 +260,12 @@ export const NodeSelect = ({ value, onChange, options = [], style = {} }) => (
     onChange={onChange}
     style={{
       width: '100%',
-      background: 'rgba(255,255,255,0.05)',
-      border: '1px solid rgba(255,255,255,0.1)',
+      background: 'var(--input-bg)',
+      border: '1px solid var(--input-border)',
       borderRadius: '6px',
       padding: '5px 8px',
       fontSize: '12px',
-      color: '#e2e8f0',
+      color: 'var(--text)',
       outline: 'none',
       boxSizing: 'border-box',
       cursor: 'pointer',
@@ -247,7 +273,7 @@ export const NodeSelect = ({ value, onChange, options = [], style = {} }) => (
     }}
   >
     {options.map(opt => (
-      <option key={opt.value} value={opt.value} style={{ background: '#1e2235' }}>
+      <option key={opt.value} value={opt.value} style={{ background: 'var(--panel-bg)' }}>
         {opt.label}
       </option>
     ))}

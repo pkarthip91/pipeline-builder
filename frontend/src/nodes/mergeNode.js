@@ -32,7 +32,7 @@ export const MergeNode = ({ id, data }) => {
           ]}
         />
       </NodeField>
-      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>
+      <div style={{ fontSize: '10px', color: 'var(--muted)', marginTop: 4 }}>
         Combine up to 3 inputs into one
       </div>
     </BaseNode>

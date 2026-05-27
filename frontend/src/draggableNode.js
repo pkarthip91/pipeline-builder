@@ -43,7 +43,7 @@ export const DraggableNode = ({ type, label, icon, color = '#6366f1' }) => {
         </span>
       )}
       <span style={{
-        color: '#cbd5e1',
+        color: 'var(--text)',
         fontSize: '11px',
         fontWeight: 600,
         fontFamily: "'DM Sans', sans-serif",

@@ -50,8 +50,8 @@ export const SubmitButton = () => {
       justifyContent: 'center',
       gap: 16,
       padding: '12px 20px',
-      background: 'linear-gradient(180deg, #111827 0%, #0f1219 100%)',
-      borderTop: '1px solid rgba(255,255,255,0.06)',
+      background: 'var(--panel-bg)',
+      borderTop: '1px solid var(--panel-border-soft)',
     }}>
       {/* Live counts */}
       <div style={{
@@ -59,17 +59,17 @@ export const SubmitButton = () => {
         fontFamily: "'DM Sans', sans-serif",
       }}>
         <span style={{
-          fontSize: '11px', color: 'rgba(255,255,255,0.35)',
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(255,255,255,0.08)',
+          fontSize: '11px', color: 'var(--muted)',
+          background: 'var(--muted-bg)',
+          border: '1px solid var(--panel-border)',
           borderRadius: 6, padding: '3px 10px',
         }}>
           {nodeCount} node{nodeCount !== 1 ? 's' : ''}
         </span>
         <span style={{
-          fontSize: '11px', color: 'rgba(255,255,255,0.35)',
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(255,255,255,0.08)',
+          fontSize: '11px', color: 'var(--muted)',
+          background: 'var(--muted-bg)',
+          border: '1px solid var(--panel-border)',
           borderRadius: 6, padding: '3px 10px',
         }}>
           {edgeCount} edge{edgeCount !== 1 ? 's' : ''}
