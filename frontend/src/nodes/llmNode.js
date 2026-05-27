@@ -1,34 +1,40 @@
 // llmNode.js
-
-import { Handle, Position } from 'reactflow';
+import { useState } from 'react';
+import { Brain } from 'lucide-react';
+import { BaseNode, NodeField, NodeSelect } from './baseNode';
 
 export const LLMNode = ({ id, data }) => {
+  const [model, setModel] = useState(data?.model || 'gpt-4o');
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-system`}
-        style={{top: `${100/3}%`}}
-      />
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-prompt`}
-        style={{top: `${200/3}%`}}
-      />
-      <div>
-        <span>LLM</span>
+    <BaseNode
+      id={id}
+      title="LLM"
+      icon={<Brain size={14} strokeWidth={2} />}
+      category="model"
+      accentColor="#8b5cf6"
+      inputs={[
+        { id: 'system', label: '' },
+        { id: 'prompt', label: '' },
+      ]}
+      outputs={[{ id: 'response', label: '' }]}
+    >
+      <NodeField label="Model">
+        <NodeSelect
+          value={model}
+          onChange={e => setModel(e.target.value)}
+          options={[
+            { value: 'gpt-4o', label: 'GPT-4o' },
+            { value: 'gpt-4-turbo', label: 'GPT-4 Turbo' },
+            { value: 'claude-3-opus', label: 'Claude 3 Opus' },
+            { value: 'claude-sonnet', label: 'Claude Sonnet' },
+            { value: 'gemini-pro', label: 'Gemini Pro' },
+          ]}
+        />
+      </NodeField>
+      <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>
+       
       </div>
-      <div>
-        <span>This is a LLM.</span>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-response`}
-      />
-    </div>
+    </BaseNode>
   );
-}
+};
