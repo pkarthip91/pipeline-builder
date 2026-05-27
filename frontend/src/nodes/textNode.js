@@ -44,13 +44,13 @@ export const TextNode = ({ id, data }) => {
       style={{
         width: size.width,
         minHeight: size.height,
-        background: 'linear-gradient(145deg, #1e2235 0%, #161927 100%)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        background: 'var(--node-bg)',
+        border: '1px solid var(--panel-border)',
         borderLeft: `3px solid ${color}`,
         borderRadius: '10px',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
         fontFamily: "'DM Sans', sans-serif",
-        color: '#e2e8f0',
+        color: 'var(--text)',
         position: 'relative',
         transition: 'width 0.15s ease, min-height 0.15s ease',
       }}
@@ -59,7 +59,7 @@ export const TextNode = ({ id, data }) => {
       <div style={{
         display: 'flex', alignItems: 'center', gap: '8px',
         padding: '10px 14px 8px',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderBottom: '1px solid var(--panel-border-soft)',
       }}>
         <span style={{ lineHeight: 0, display: 'inline-flex', color }}>
           <FileText size={14} strokeWidth={2} />
@@ -79,7 +79,7 @@ export const TextNode = ({ id, data }) => {
       <div style={{ padding: '10px 14px 12px' }}>
         <label style={{
           display: 'block', fontSize: '10px', fontWeight: 600,
-          color: 'rgba(255,255,255,0.4)', letterSpacing: '0.06em',
+          color: 'var(--muted)', letterSpacing: '0.06em',
           textTransform: 'uppercase', marginBottom: '4px',
         }}>
           Text Content
@@ -92,12 +92,12 @@ export const TextNode = ({ id, data }) => {
           rows={2}
           style={{
             width: '100%',
-            background: 'rgba(255,255,255,0.05)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'var(--input-bg)',
+            border: '1px solid var(--input-border)',
             borderRadius: '6px',
             padding: '6px 8px',
             fontSize: '12px',
-            color: '#e2e8f0',
+            color: 'var(--text)',
             outline: 'none',
             boxSizing: 'border-box',
             resize: 'none',
@@ -106,11 +106,11 @@ export const TextNode = ({ id, data }) => {
             fontFamily: 'inherit',
           }}
           onFocus={e => e.target.style.borderColor = 'rgba(59,130,246,0.6)'}
-          onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+          onBlur={e => e.target.style.borderColor = 'var(--input-border)'}
         />
         {variables.length > 0 && (
           <div style={{ marginTop: 6 }}>
-            <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            <span style={{ fontSize: '9px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Variables:
             </span>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 3 }}>
@@ -150,7 +150,7 @@ export const TextNode = ({ id, data }) => {
               position: 'absolute',
               left: 14,
               top: `calc(${topPct}% - 7px)`,
-              fontSize: '9px', color: 'rgba(255,255,255,0.35)',
+              fontSize: '9px', color: 'var(--muted)',
               pointerEvents: 'none', userSelect: 'none',
             }}>
               {varName}
